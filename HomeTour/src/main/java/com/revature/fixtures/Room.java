@@ -16,20 +16,21 @@ package com.revature.fixtures;
 
 public class Room extends Fixture {
 
-	private Room[] exits;
+//	private Room[] exits;
 
 	public Room(String name, String shortDescription, String longDescription) {
-//		super(name, shortDescription, longDescription);
-		
-		this.exits = new Room[10]; // size is your choice
+		this.name = name;
+		this.shortDescription = shortDescription;
+		this.longDescription = longDescription;
+//		this.exits = new Room[10]; // size is your choice
 	}
 	
-	public Room[] getsExits() {
-		
-	}
-	
-	public Room getExit(String direction) {
-		
-	}
+//	public Room[] getsExits() {
+////		print question options to the console
+//	}
+//	
+//	public Room getExit(String direction) {
+//		
+//	}
 	
 }

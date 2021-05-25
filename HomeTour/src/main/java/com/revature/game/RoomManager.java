@@ -17,23 +17,26 @@ import com.revature.fixtures.Room;
 
 public class RoomManager {
 	
-	
 	Room startingRoom;
 	Room[] rooms;
+	
+	
+	
+	public RoomManager() {
+		this.rooms = new Room[2];
+	}
 
 
-	public void init() {
+
+	public static void init() {
 		
 		
 		
-		Room entryway = new Room(
-				"The Entryway", 
-				"The small Entryway",
-				"The small entryway of a midwestern, two-story house. A living room is open to the west, where a sitting area can be seen." + "\n"
-				+ "A staircase is seen leading up to the second floor." 
-				+ "The hardwood floor leads north to the kitchen with white cabinets.");
-		this.rooms[0] = entryway;
-		this.startingRoom = entryway;
+		
+		
+		
+		
+		
 						
 				
 	}

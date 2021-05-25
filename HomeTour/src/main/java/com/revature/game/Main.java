@@ -25,34 +25,39 @@ import java.util.Scanner;
 
 public class Main {
 	
+	public static RoomManager rm = new RoomManager();
+	
 	public static String action;
 	public static String target;
 	
+	
 	public static void main(String[] args) {
+		
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("Please type Start to start the house tour!");
-
-		String input = scanner.nextLine();
-		String[] arrInput = input.split(" ", 1);
 		
+		Player player = new Player(rm.startingRoom);
+		printRoom(player);
 		
-		arrInput[0] = action;
-		arrInput[1] = target;
+		String input = scanner.next();
+		String[] command = input.split(" ");
+		
+		parse(command, player);
+		
 		
 		scanner.close();
+
 	}
 	
 	private static void printRoom(Player player) {
-		System.out.println("Prompt user for current room.");
-	}
-	
-	private static String[] collectInput() {
-		return null;
+		System.out.println(player.currentRoom);
 		
 	}
 	
-	private static void parse(String[] command, Player player) {
-		
+	
+	
+	
+	private static void parse(String[] inputArr, Player player) {
+		System.out.println(inputArr[0]);
 	}
 
 }
