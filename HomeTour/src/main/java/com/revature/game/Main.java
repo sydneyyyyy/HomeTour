@@ -2,6 +2,8 @@ package com.revature.game;
 
 import java.util.Scanner;
 
+import com.revature.fixtures.Room;
+
 /*
  * This class stores the main() method. Where the game loop will go, where we'll
  * display the prompt, collect input, and parse that input. 
@@ -25,39 +27,95 @@ import java.util.Scanner;
 
 public class Main {
 	
-	public static RoomManager rm = new RoomManager();
-	
-	public static String action;
-	public static String target;
+	public static RoomManager rm = new RoomManager(10);
+	public static boolean playing = true;
+	public static String[] command;
+	public static Room currentRoom;
+	public static Player player = new Player();
+//	public static String action;
+//	public static String target;
 	
 	
 	public static void main(String[] args) {
 		
 		Scanner scanner = new Scanner(System.in);
+		rm.init();
+		player.setCurrentRoom(rm.getStartingRoom());
 		
-		Player player = new Player(rm.startingRoom);
-		printRoom(player);
 		
-		String input = scanner.next();
-		String[] command = input.split(" ");
 		
-		parse(command, player);
+		System.out.println("Welcome to my house tour!" + 
+				"\nYou enter into my house through the front door directly into the entryway.");
 		
+		
+		
+		while (playing) {
+			printRoom(player);
+			String[] input = collectInput(scanner);
+			
+			parse(input, player);
+		}
+		if (!playing) {
+			System.out.println("Goodbye!");
+		}
 		
 		scanner.close();
 
 	}
 	
 	private static void printRoom(Player player) {
-		System.out.println(player.currentRoom);
+		System.out.println("\nYou are currently in: " + player.currentRoom.getName());
+		System.out.println("LongDescription: " + player.currentRoom.getLongDescription());
+		
+	}
+	
+	
+	
+	private static String[] collectInput(Scanner scanner) {
+		System.out.println("\nWhat direction would you like to go?");
+		command = scanner.nextLine().split(" ");
+		
+
+		return command;
 		
 	}
 	
 	
 	
 	
-	private static void parse(String[] inputArr, Player player) {
-		System.out.println(inputArr[0]);
+	private static void parse(String[] command, Player player) {
+		String action = command[0];
+		System.out.println(action);
+		String direction = command[1];
+		System.out.println(direction);
+//		String direction = null;
+		
+//		if (command.length > 1) {
+//			direction = command[1].toLowerCase();
+//			System.out.println(direction);
+//		}
+		
+		for (int i = 0; i < command.length; i++) {
+			if (command[i].equalsIgnoreCase("west")) {
+				
+				if (player.getCurrentRoom().getExit(currentRoom, "west") != null ) {
+					action = "go";
+					direction = "west";
+					break;
+				} 
+			}
+			
+		}
+//		if (action == "go") {
+//			Room move = player.getCurrentRoom().getExit(direction, action);
+//			player.setCurrentRoom(move);
+//			System.out.println(move);
+//		} else if (action == "quit") {
+//			playing = false;
+//		
+//		}
+		
+		
 	}
 
 }

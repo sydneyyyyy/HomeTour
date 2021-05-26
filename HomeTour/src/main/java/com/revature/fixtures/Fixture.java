@@ -19,6 +19,14 @@ public abstract class Fixture {
 	public String shortDescription;
 	public String longDescription;
 	
+
+	public Fixture(String name, String shortDescription, String longDescription) {
+		super();
+		this.name = name;
+		this.shortDescription = shortDescription;
+		this.longDescription = longDescription;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -42,6 +50,8 @@ public abstract class Fixture {
 	public void setLongDescription(String longDescription) {
 		this.longDescription = longDescription;
 	}
+	
+	
 	
 	
 	
