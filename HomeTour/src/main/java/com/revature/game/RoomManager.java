@@ -28,7 +28,7 @@ public class RoomManager {
 
 	
 	public Room getStartingRoom() {
-		return this.startingRoom;
+		return startingRoom;
 	}
 	
 	public void setStartingRoom(Room startingRoom) {
@@ -47,13 +47,13 @@ public class RoomManager {
 
 	public void init() {
 		Room entryway = new Room(
-				"The entryway",
+				"entryway",
 				"The small Entryway",
 				"The small entryway of a midwestern, two story house. To the west a formal living room can be seen." + 
 				"\nThere is a staircase directly north of the entryway leading up to the second floor where the bedrooms and bathroom are located."
 				+ "\nThe hardwood floor leads east into the kitchen with white cabinets and a large refrigerator.");
-		this.rooms[0] = entryway;
-		this.setStartingRoom(entryway); 
+		rooms[0] = entryway;
+		setStartingRoom(entryway); 
 		
 		Room livingRoom = new Room(
 				"Living Room",
@@ -61,7 +61,7 @@ public class RoomManager {
 				"You enter the cozy living room with a comfy couch against the wall." + 
 				"To the east is a dining room. " +
 				"To the south is the entryway.");
-		this.rooms[1] = livingRoom;
+		rooms[1] = livingRoom;
 		
 		Room kitchen = new Room(
 				"Kitchen",
@@ -69,7 +69,7 @@ public class RoomManager {
 				"You enter the new kitchen, with brand new white cabinets, and a new quartz counter top."
 				+ "The dining room is to your west." + "There is a family room to your east. " + 
 				"To the south is the entryway.");
-		this.rooms[2] = kitchen;
+		rooms[2] = kitchen;
 		
 		Room diningRoom = new Room(
 				"Dining Room",
@@ -77,21 +77,21 @@ public class RoomManager {
 				"You enter the formal dining room, with a large table and chairs where the family gathers on holidays." 
 				+ "To the west is the cozy living room. " +
 				"To the south is the kitchen.");
-		this.rooms[3] = diningRoom;
+		rooms[3] = diningRoom;
 		
 		Room familyRoom = new Room(
 				"Family Room",
 				"The comfy family room.",
 				"You enter the family room with a large T.V. in the far corner of the room. " +
 				"This is a dead end, please enter 'south' to enter the kitchen.");
-		this.rooms[4] = familyRoom;
+		rooms[4] = familyRoom;
 		
 		Room staircase = new Room(
 				"Staircase",
 				"small staircase",
 				"The staircase leads from the first floor up to the second floor." +
 				"The staircase leads north to a small hallway leading to the bedrooms and the bathroom.");
-		this.rooms[5] = staircase;
+		rooms[5] = staircase;
 		
 		Room smallHallway = new Room(
 				"Small Hallway",
@@ -100,28 +100,28 @@ public class RoomManager {
 				"To the west is the master bedroom. " +
 				"To the north is the upstairs bathroom. " +
 				"To the east is the second bedroom.");
-		this.rooms[6] = smallHallway;
+		rooms[6] = smallHallway;
 		
 		Room masterBedroom = new Room(
 				"Master Bedroom",
 				"A large master bedroom.",
 				"You enter the master bedroom where the head of household sleeps. " +
 				"To exit this room please enter 'south'.");
-		this.rooms[7] = masterBedroom;
+		rooms[7] = masterBedroom;
 		
 		Room bathroom = new Room(
 				"Bathroom",
 				"The upstairs bathroom",
 				"You enter the bathroom. This is a dead end. To exit the upstairs bathroom, " +
 				"please enter 'south'.");
-		this.rooms[8] = bathroom;
+		rooms[8] = bathroom;
 				
 		Room bedroom2 = new Room(
 				"Bedroom2",
 				"The second bedroom.",
 				"You enter the second bedroom. This is a dead end. To exit the second bedroom, " +
 				"please enter 'south'.");
-		this.rooms[9] = bedroom2;
+		rooms[9] = bedroom2;
 		
 		/*
 		 * west -> 0

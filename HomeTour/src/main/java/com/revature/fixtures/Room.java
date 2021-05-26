@@ -1,5 +1,7 @@
 package com.revature.fixtures;
 
+import java.util.Arrays;
+
 /*
  * This represents a room in the house. It will inherit the descriptive properties.
  * and will also have the following properties:
@@ -32,18 +34,25 @@ public class Room extends Fixture {
 		this.exits = exits;
 	}
 	
-//	public void setExits(Room exit, int i) {
-//		this.exits[i] = exit;
-//	}
-
-	public Room getExit(Room room, String direction) {
-		switch (direction) {
-			case  "west" : {
-				room = exits[0];
-				break;
-			}
-			
+	public Room getExit(Room room, String command) {
+		
+		if (command.equals("west")) {
+			room = exits[0];
+		} else if (command.equals("north")) {
+			room = exits[1];
+		} else if (command.equals("east")) {
+			room = exits[2];
+		} else {
+			room = exits[3];
 		}
 		return room;
 	}
+
+
+	@Override
+	public String toString() {
+		return "Room [exits=" + Arrays.toString(exits) + ", getExits()=" + Arrays.toString(getExits()) + "]";
+	}
+
+	
 }

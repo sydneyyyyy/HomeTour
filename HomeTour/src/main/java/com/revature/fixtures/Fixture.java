@@ -31,6 +31,7 @@ public abstract class Fixture {
 		return name;
 	}
 	
+	
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -49,6 +50,12 @@ public abstract class Fixture {
 	
 	public void setLongDescription(String longDescription) {
 		this.longDescription = longDescription;
+	}
+
+	@Override
+	public String toString() {
+		return "Fixture [name=" + name + ", shortDescription=" + shortDescription + ", longDescription="
+				+ longDescription + "]";
 	}
 	
 	

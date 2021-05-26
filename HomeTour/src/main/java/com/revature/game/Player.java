@@ -12,7 +12,6 @@ import com.revature.fixtures.Room;
 public class Player {
 
 	Room currentRoom;
-	
 
 	public Room getCurrentRoom() {
 		return currentRoom;
@@ -21,6 +20,9 @@ public class Player {
 	public void setCurrentRoom(Room currentRoom) {
 		this.currentRoom = currentRoom;
 	}
+	
+	
+	
 	
 	
 	

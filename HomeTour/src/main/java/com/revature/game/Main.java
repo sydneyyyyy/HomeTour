@@ -27,55 +27,109 @@ import com.revature.fixtures.Room;
 
 public class Main {
 	
+	public static Scanner scanner = new Scanner(System.in);
 	public static RoomManager rm = new RoomManager(10);
 	public static boolean playing = true;
 	public static String[] command;
 	public static Room currentRoom;
 	public static Player player = new Player();
-//	public static String action;
+//	public static String input;
+	public static String direction;
+	public static String action;
 //	public static String target;
 	
 	
 	public static void main(String[] args) {
 		
-		Scanner scanner = new Scanner(System.in);
 		rm.init();
 		player.setCurrentRoom(rm.getStartingRoom());
-		
 		
 		
 		System.out.println("Welcome to my house tour!" + 
 				"\nYou enter into my house through the front door directly into the entryway.");
 		
-		
+		printRoom(player);
 		
 		while (playing) {
-			printRoom(player);
-			String[] input = collectInput(scanner);
 			
-			parse(input, player);
+			collectInput();
+			parse(command, player);
+			
+			if (action != null) {
+				
+				switch (action) {
+				
+					case "quit" : {
+						
+						System.out.println("Goodbye!");
+						playing = false;
+						break;
+						
+					}
+					
+					case "go" : {
+						
+						switch (direction) {
+							
+							case "west" : {
+								player.setCurrentRoom(player.getCurrentRoom().getExit(currentRoom, "west"));
+								printRoom(player);
+								break;
+							}
+							
+							case "north" : {
+								player.setCurrentRoom(player.getCurrentRoom().getExit(currentRoom, "north"));
+								printRoom(player);
+								break;
+							}
+							
+							case "east" : {
+								player.setCurrentRoom(player.getCurrentRoom().getExit(currentRoom, "east"));
+								printRoom(player);
+								break;
+							}
+							
+							case "south" : {
+								player.setCurrentRoom(player.getCurrentRoom().getExit(currentRoom, "south"));
+								printRoom(player);
+								break;
+							}
+							
+							default: {
+								
+								break;
+							}
+						}
+						
+						break;
+					}
+					
+					default: {
+						System.out.println("Please enter a direction or 'quit'!");
+						break;
+					}
+				}
+			}
+			
+			else {
+				continue;
+			}
 		}
-		if (!playing) {
-			System.out.println("Goodbye!");
-		}
-		
-		scanner.close();
+	
 
 	}
 	
 	private static void printRoom(Player player) {
-		System.out.println("\nYou are currently in: " + player.currentRoom.getName());
-		System.out.println("LongDescription: " + player.currentRoom.getLongDescription());
+		System.out.println("\nYou've entered the " + player.getCurrentRoom().getName());
+		System.out.println(player.getCurrentRoom().getLongDescription());
 		
 	}
 	
 	
 	
-	private static String[] collectInput(Scanner scanner) {
-		System.out.println("\nWhat direction would you like to go?");
+	private static String[] collectInput() {
+	
 		command = scanner.nextLine().split(" ");
-		
-
 		return command;
 		
 	}
@@ -84,38 +138,77 @@ public class Main {
 	
 	
 	private static void parse(String[] command, Player player) {
-		String action = command[0];
-		System.out.println(action);
-		String direction = command[1];
-		System.out.println(direction);
-//		String direction = null;
-		
-//		if (command.length > 1) {
-//			direction = command[1].toLowerCase();
-//			System.out.println(direction);
-//		}
 		
 		for (int i = 0; i < command.length; i++) {
-			if (command[i].equalsIgnoreCase("west")) {
+			
+			if (command[i].equalsIgnoreCase("quit")) {
+				action = "quit";
+
+			} else if (command[i].equalsIgnoreCase("west")) {
 				
 				if (player.getCurrentRoom().getExit(currentRoom, "west") != null ) {
+					
 					action = "go";
 					direction = "west";
 					break;
-				} 
+					
+				} else {
+					
+					action = "incorrect";
+					System.out.println("You've hit a dead end. Please enter another direction!");
+					
+				}
+				
+			} else if (command[i].equalsIgnoreCase("north")) {
+				
+				if (player.getCurrentRoom().getExit(currentRoom, "north") != null) {
+					
+					action = "go";
+					direction = "north";
+					break;
+				} else {
+					
+					action = "incorrect";
+					System.out.println("You've hit a dead end. Please enter another direction!");
+					
+				}
+				
+			} else if (command[i].equalsIgnoreCase("east")) {
+				
+				if (player.getCurrentRoom().getExit(currentRoom, "east") != null) {
+					
+					action = "go";
+					direction = "east";
+					break;
+					
+				} else {
+					
+					action = "incorrect";
+					System.out.println("You've hit a dead end. Please enter another direction!");
+					
+				}
+				
+			} else if (command[i].equalsIgnoreCase("south")) {
+				
+				if (player.getCurrentRoom().getExit(currentRoom, "south") != null) {
+					
+					action = "go";
+					direction = "south";
+					break;
+					
+				} else {
+					
+					action = "incorrect";
+					System.out.println("You've hit a dead end. Please enter another direction!");
+						
+				}
+				
+			} else {
+				
+				action = "incorrect";
+//				System.out.println("Please try again!");
+				
 			}
-			
 		}
-//		if (action == "go") {
-//			Room move = player.getCurrentRoom().getExit(direction, action);
-//			player.setCurrentRoom(move);
-//			System.out.println(move);
-//		} else if (action == "quit") {
-//			playing = false;
-//		
-//		}
-		
-		
 	}
-
 }
